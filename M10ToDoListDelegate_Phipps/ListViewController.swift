@@ -11,12 +11,33 @@ class ListViewController: UIViewController {
 
     var toDoList = [String]()
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination.children.first as? AddViewController{
+            vc.delegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
 
+}
+
+extension ListViewController: ToDoDelegate{
+    func addViewController(_ vc: UIViewController, didInsert todo: String) {
+        toDoList.append(todo)
+        tableView.reloadData()
+    }
+    
+    func addViewControllerDidCancel(_ vc: UIViewController) {
+        
+    }
+    
+    
 }
 
 extension ListViewController: UITableViewDataSource{

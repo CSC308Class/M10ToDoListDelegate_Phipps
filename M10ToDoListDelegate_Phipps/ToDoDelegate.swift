@@ -8,6 +8,10 @@
 import UIKit
 
 protocol ToDoDelegate: AnyObject {
+    
+    //insert
     func addViewController(_ vc: UIViewController, didInsert todo: String)
+    
+    //cancel
     func addViewControllerDidCancel(_ vc: UIViewController)
 }

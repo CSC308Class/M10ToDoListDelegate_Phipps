@@ -15,11 +15,18 @@ class AddViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     
     @IBAction func cancelButton(_ sender: Any) {
+        delegate?.addViewControllerDidCancel(self)
         self.dismiss(animated: true)
     }
     
     
     @IBAction func saveButton(_ sender: Any) {
+        guard let text = textField.text else{
+            return
+        }
+        
+        delegate?.addViewController(self, didInsert: text)
+        
         self.dismiss(animated: true)
     }
     
